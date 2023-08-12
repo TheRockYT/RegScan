@@ -62,7 +62,7 @@ getRegDataV6();
 // Listen for any changes to the URL of any tab.
 chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
   // Check if the URL is fully loaded
-  if (changeInfo.status === "loading") {
+  if (changeInfo.status === "complete") {
     let url = new URL(tab.url);
     let hostname = url.hostname;
     let domainSplit = hostname.split(".");
@@ -155,23 +155,19 @@ function doDate(date) {
 }
 function showNotification(url, date) {
   // type, iconUrl, title and message.
-  if (date.days < 365) {
-    chrome.notifications.create("RegScan-" + url, {
-      type: "basic",
-      iconUrl: "icon.png",
-      title: "RegScan",
-      silent: false,
-      contextMessage: "RegScan domain registration notification",
-      message:
-        "Domain: " +
-        url +
-        "\n" +
-        "Registration date: " +
-        date.formattedDate +
-        "\n" +
-        "Registration days: " +
-        date.days,
-    });
-  } else {
-  }
+  chrome.notifications.create("RegScan-" + url, {
+    type: "basic",
+    iconUrl: "icon.png",
+    title: "RegScan",
+    contextMessage: "RegScan domain registration notification",
+    message:
+      "Domain: " +
+      url +
+      "\n" +
+      "Registration date: " +
+      date.formattedDate +
+      "\n" +
+      "Registration days: " +
+      date.days,
+  });
 }
