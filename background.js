@@ -158,7 +158,7 @@ function showNotification(url, date) {
   if (date.days < 365) {
     chrome.notifications.create("RegScan-" + url, {
       type: "basic",
-      iconUrl: "logo.png",
+      iconUrl: "icon.png",
       title: "RegScan",
       silent: false,
       contextMessage: "RegScan domain registration notification",
