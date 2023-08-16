@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RegScan</title>
+    <script src="renderer.js" defer></script>
+    <script src="popup.js" defer></script>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <h1>RegScan</h1>
+    <div id="information_loaded" class="invisible">
+      <p>Server: <span id="field_server"></span></p>
+      <p>Date Registered: <span id="field_date_register"></span></p>
+      <p>Days Registered: <span id="field_days_register"></span></p>
+    </div>
+    <div id="information_error" class="invisible">
+      <p>Failed to load information:</p>
+      <p id="error_message"></p>
+    </div>
+    <div id="information_loading">
+      <p>Loading information...</p>
+    </div>
+  </body>
+</html>

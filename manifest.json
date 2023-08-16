@@ -4,7 +4,8 @@
   "version": "0.0.0",
   "description": "RegScan by TheRockYT is a chrome extension that scans for newly registered domains and notifies you when it finds one.",
   "action": {
-    "default_popup": "popup.html"
+    "default_popup": "popup/popup.html",
+    "default_title": "RegScan"
   },
   "icons": {
     "1024": "icon.png"
@@ -12,6 +13,6 @@
   "background": {
     "service_worker": "background.js"
   },
-  "permissions": ["activeTab", "notifications"],
+  "permissions": ["tabs", "scripting"],
   "host_permissions": ["<all_urls>"]
 }
