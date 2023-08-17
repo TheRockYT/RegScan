@@ -107,6 +107,10 @@ function goPopup(type, message) {
     });
     setTimeout(() => {
       popup.style.opacity = "0.0";
+      setTimeout(() => {
+        // Remove the popup div from body
+        document.body.removeChild(popup);
+      }, 5000);
     }, 5000);
   }, 1);
 }
