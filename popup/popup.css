@@ -1,3 +1,20 @@
 .invisible {
   display: none;
 }
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px;
+  padding: 10px;
+}
+p {
+  font-size: 1.3rem;
+  margin: 5px;
+  padding: 0;
+}
