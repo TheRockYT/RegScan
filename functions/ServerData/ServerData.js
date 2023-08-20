@@ -1,3 +1,5 @@
+importScripts("/functions/ServerData/DomainServerData.js");
+
 // Temporary data (cache) for faster loading
 let tempData = {};
 async function getServerData(server) {
@@ -22,75 +24,7 @@ async function getServerData(server) {
   }
   return { type: "error", message: "Unsupported Protocol!" };
 }
-async function getDomainServerData(server) {
-  // Get the RegData
-  let dataDomain = await getRegDataDomain();
-  // Get the domain ending
-  let domainEnding = server.split(".")[1];
-  if (dataDomain != null) {
-    // Get the service data
-    let services = dataDomain.services;
-    let service = null;
-    // Loop through the services
-    for (let i = 0; i < services.length; i++) {
-      service = services[i];
-      let found = false;
-      // Loop through the domain endings
-      for (let j = 0; j < service[0].length; j++) {
-        if (service[0][j] == domainEnding) {
-          found = true;
-          break;
-        }
-      }
-      if (found) break;
-    }
-    // Check if the service was found
-    if (service != null) {
-      // Get the service API url
-      let serviceApi = service[1][0] + "domain/" + server;
-      try {
-        // Fetch the service API
-        let response = await fetch(serviceApi);
-        // Check if the response was successful
-        if (response.status == 200) {
-          // Get the response data
-          let responseData = await response.json();
-          let events = responseData.events;
-          // Loop through the events
-          for (let i = 0; i < events.length; i++) {
-            let event = events[i];
-            // Check if the event is a registration event
-            if (event.eventAction == "registration") {
-              // Get the date
-              let date = doDate(event.eventDate);
-              return {
-                type: "success",
-                server: server,
-                date: date.formattedDate,
-                days: date.days,
-              };
-            }
-          }
-          return {
-            type: "error",
-            message: "Failed to read api: " + serviceApi,
-          };
-        } else {
-          return {
-            type: "error",
-            message: "Failed to fetch api: " + response.status,
-          };
-        }
-      } catch (error) {
-        return { type: "error", message: "Failed to fetch api: " + error };
-      }
-    } else {
-      return { type: "error", message: "Service not found." };
-    }
-  } else {
-    return { type: "error", message: "Could not load RegDataDomain." };
-  }
-}
+
 function parseServerUrl(server) {
   // Check if the server is a valid URL (http:// or https://)
   if (server.startsWith("http://") || server.startsWith("https://")) {
