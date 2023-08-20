@@ -11,6 +11,7 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     console.log(
       "Received regscan_info_response message from background script."
     );
+    // Check if the message is a success message
     if (message.type == "success") {
       showInfo(message.server, message.date, message.days);
     } else {

@@ -54,6 +54,26 @@ async function getDomainServerData(server) {
               changedDate = doDate(event.eventDate);
             }
           }
+
+          // A list with all nameservers
+          let nameserverList = [];
+          // Get the nameservers
+          let nameservers = responseData.nameservers;
+          // Loop through the nameservers
+          for (let i = 0; i < nameservers.length; i++) {
+            let nameserver = nameservers[i];
+            // Check if the nameserver is a objectClassName
+            if (nameserver.objectClassName == "nameserver") {
+              // Get the nameserver ldhName
+              let nameserverLdhName = nameserver.ldhName;
+              // Check if the nameserver ldhName is not null
+              if (nameserverLdhName != null) {
+                // Add the nameserver to the list
+                nameserverList.push(nameserverLdhName);
+              }
+            }
+          }
+
           return {
             type: "success",
             server: server,
@@ -62,6 +82,7 @@ async function getDomainServerData(server) {
             registrationDate: registrationDate,
             expirationDate: expirationDate,
             changedDate: changedDate,
+            nameservers: nameserverList,
           };
         } else {
           return {
