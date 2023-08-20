@@ -13,7 +13,13 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     );
     // Check if the message is a success message
     if (message.type == "success") {
-      showInfo(message.server, message.date, message.days);
+      showInfo(
+        message.server,
+        message.registrationDate,
+        message.expirationDate,
+        message.changedDate,
+        message.nameservers
+      );
     } else {
       showError(message.message);
     }

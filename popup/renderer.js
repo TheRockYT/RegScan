@@ -3,11 +3,25 @@ function showError(error) {
   document.getElementById("error_message").innerText = error;
   document.getElementById("information_error").classList.remove("invisible");
 }
-function showInfo(server, date, days) {
+function showInfo(
+  server,
+  registrationDate,
+  expirationDate,
+  changedDate,
+  nameservers
+) {
   hideAll();
   document.getElementById("field_server").innerText = server;
-  document.getElementById("field_date_register").innerText = date;
-  document.getElementById("field_days_register").innerText = days;
+  document.getElementById("field_date_registration").innerText =
+    registrationDate.formattedDate + " (" + registrationDate.days + " days)";
+  document.getElementById("field_date_expiration").innerText =
+    expirationDate.formattedDate + " (" + expirationDate.days + " days)";
+  document.getElementById("field_date_changed").innerText =
+    changedDate.formattedDate + " (" + changedDate.days + " days)";
+  document.getElementById("field_nameservers").innerHTML =
+    "<ul>" +
+    nameservers.map((nameserver) => "<li>" + nameserver + "</li>").join("") +
+    "</ul>";
 
   document.getElementById("information_loaded").classList.remove("invisible");
 }

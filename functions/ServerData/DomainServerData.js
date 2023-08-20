@@ -77,8 +77,6 @@ async function getDomainServerData(server) {
           return {
             type: "success",
             server: server,
-            date: registrationDate.formattedDate,
-            days: registrationDate.days,
             registrationDate: registrationDate,
             expirationDate: expirationDate,
             changedDate: changedDate,

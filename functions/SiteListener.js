@@ -4,16 +4,18 @@ chrome.tabs.onUpdated.addListener(async function (tabId, changeInfo, tab) {
   if (changeInfo.status === "complete") {
     let serverData = await getServerData(tab.url);
     if (serverData.type == "success") {
-      if (serverData.days < 90) {
+      if (serverData.registrationDate.days < 90) {
         injectPopup(
           "error",
-          "This page is not three months old. Days: " + serverData.days,
+          "This page is not three months old. Days: " +
+            serverData.registrationDate.days,
           tabId
         );
-      } else if (serverData.days < 365) {
+      } else if (serverData.registrationDate.days < 365) {
         injectPopup(
           "warning",
-          "This page is not one year old. Days: " + serverData.days,
+          "This page is not one year old. Days: " +
+            serverData.registrationDate.days,
           tabId
         );
       }
