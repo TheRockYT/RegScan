@@ -13,11 +13,16 @@ h1 {
   margin: 10px;
   padding: 10px;
 }
-p {
+p,
+li {
   font-size: 1.3rem;
   margin: 5px;
   padding: 0;
 }
+li {
+  font-size: 1rem;
+}
 ul {
   margin: 0;
+  padding-left: 15px;
 }
